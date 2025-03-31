@@ -1,0 +1,22 @@
+
+
+<div style="max-width: 600px; margin: auto; padding: 20px;">
+    <h2 style="text-align: center; color: #333; font-size: 40px; font-weight: bold;">Evento Criado com Sucesso!</h2>
+    <p style="text-align: center; font-size: 18px; color: #555;">O evento foi criado com sucesso. Você pode visualizar o evento no Google Calendar.</p>
+    
+    <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+        <!-- Botão Ver Evento no Google Calendar -->
+        <a href="{{ evento_link }}" target="_blank" style="text-decoration: none;">
+            <button style="padding: 10px; font-size: 14px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%; text-align: center;">
+                Ver Evento no Google Calendar
+            </button>
+        </a>
+
+        <!-- Botão Voltar para a Página Principal -->
+        <a href="{% url 'home' %}" style="text-decoration: none;">
+            <button style="padding: 10px; font-size: 14px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%; text-align: center;">
+                Voltar para Página Principal
+            </button>
+        </a>
+    </div>
+</div>

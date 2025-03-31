@@ -1,0 +1,71 @@
+<!-- spotify_integration/templates/spotify_integration/genre_spotify.html -->
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faixas Populares do Spotify</title>
+    <style>
+        /* Estilos CSS diretamente no documento HTML */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .list-group-item {
+            font-size: 1.2rem;
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background-color: #1db954;
+            border-color: #1db954;
+        }
+
+        .btn-primary:hover {
+            background-color: #1ed760;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Faixas Populares do Spotify</h2>
+        
+        <form method="POST" id="playlistForm">
+            {% csrf_token %}
+            <label for="playlist_id" class="form-label">Escolha uma Playlist:</label>
+            <input type="text" id="playlist_id" name="playlist_id" class="form-control" placeholder="Insira o ID da playlist">
+            <button type="submit" class="btn btn-primary mt-3">Filtrar</button>
+        </form>
+
+        <h3 class="mt-4">Faixas do Spotify</h3>
+        <ul class="list-group">
+            {% for faixa in faixas_spotify %}
+                <li class="list-group-item">
+                    {{ faixa.title }} - Popularidade: {{ faixa.popularity }}
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">Nenhuma faixa encontrada.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        // Scripts JavaScript diretamente no documento HTML
+        document.addEventListener("DOMContentLoaded", function () {
+            // Pode adicionar aqui o código para interação, como animações ou validação de formulário
+        });
+    </script>
+</body>
+</html>

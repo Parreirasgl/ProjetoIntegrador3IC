@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block 'titulo_head' %} Sobre {% endblock %}
+
+{% block 'body_extra' %}
+
+
+<!-- Menu de navegação superior -->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1874CD;">
+    <a class="navbar-brand" href="#" style="color: white;">Informações da banda</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'sobre' %}" style="color: white;">Sobre</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'evento' %}" style="color: white;">Eventos</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'galeria' %}" style="color: white;">Galeria</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contato' %}" style="color: white;">Contato</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'sair' %}" style="color: white;">Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+
+<div style="padding: 0 20px;">
+
+    <h1 style="font-size: 20px; font-weight: bold; text-align: center;">Sobre a Corporação Musical Henrique Marques</h1>
+    
+    <div style="text-align: center;">
+        <img src="https://scontent.fcpq8-1.fna.fbcdn.net/v/t1.6435-9/57155237_2198445460242909_4859744831020204032_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=cf85f3&_nc_eui2=AeFysIuBQ9WROzNTzx6VQWmC-WGuyA-E3Vj5Ya7ID4TdWIV1UkO-Eq9J4hGhTzYlI2mU9MeYboE719W4jtRigIEQ&_nc_ohc=5jRamLOAn4cQ7kNvgF1uXtr&_nc_zt=23&_nc_ht=scontent.fcpq8-1.fna&_nc_gid=AaAvQdeVrnpVMUVzIINFKwn&oh=00_AYCiwh6fZEgfV8wSXxAFcNL8wKcZ7gVNOgCgsRsuxwTj8A&oe=676024CF" alt="Imagem sobre a banda" style="width: 500px; height: 500px; object-fit: cover;">
+    </div>
+    
+
+    <div style="max-width: 800px; margin: 0 auto;">
+        <p style="text-align: justify; font-size: 16px; padding: 0 30px;">
+            Corria o ano de 1860. Limeira era pequena, até acanhada, seus poucos habitantes viram chegar naquela manhã, um homem de cor, acompanhado de um menino de 12 anos. Não traziam malas nem bagagem. Traziam apenas a pobre e modesta roupa do corpo. Entretanto, o homem trazia dentro da alma o que há de mais sublime na criatura humana, a vocação musical. Ele era professor de música.
+            Em poucas semanas Joaquim Luiz Marques – este era o seu nome – conquistou o respeito de todos. Passou a ensinar música aos filhos de Limeira. Tal era a sua vontade de ensinar e o seu entusiasmo para com a música que no dia 06 de novembro de 1860, o povo admirado saía às ruas para ouvir a Lyra d’Oeste. Estava formada a primeira banda de música de Limeira – uma das primeiras do estado de São Paulo. A Banda, garbosa, marchava pelas ruas e suas clarinadas anunciavam a todos que Limeira possuía uma Banda de Música. E desde então, a Lyra d’Oeste nunca deixou de tocar. Negro, o fundador da Banda havia sentido na própria pele os horrores da escravidão, e entrou de corpo e alma na luta pela liberdade dos escravos.
+            Quando os arautos da liberdade chegavam à Limeira para grandes comícios e movimentos de libertação, lá estava o mestre Joaquim com a sua Banda, oferecendo música para a liberdade. Nomes como Joaquim Nabuco, José do Patrocínio, André Rebouças, dentre outros grandes líderes da libertação negra certamente usaram o verbo inflamado das praças públicas, dominados pela música de Joaquim Luiz Marques.
+            Em 1892, o mestre Joaquim Luiz Marques fechou os olhos para sempre. Ficara em Limeira durante 32 anos, se dedicando ao ensino da divina arte, de modo a contribuir para cultivar de toda a beleza ostentada pela música. Após a morte de Joaquim, a diretoria decidiu passar a batuta para seu filho, Henrique Marques.
+            O jovem não decepcionou a memória de seu velho pai. Assim, a Lyra d’Oeste continuava à transbordar a cidade de Limeira com sua admirável qualidade musical. Tendo herdado a inteligência, a bondade e o completo domínio da bela arte, Henrique Marques em pouco tempo sentiu seu nome correr por todas as cidades onde a Banda se apresentava. Diante deste notável domínio musical, o povo passou à se referir à Banda Lyra d’Oeste como Corporação Musical Henrique Marques, nome mantido até os dias de hoje.
+            Aos 18 dias do mês de dezembro de 1936, a cidade mais uma vez caiu em prantos, Henrique Marques partiu para a morada dos justos. Limeira cobriu-se de luto para chorar a morte de um autêntico artista. A Corporação precisava de um novo regente, e o posto é então atribuído ao senhor Benício Zacharias, então um dos mais dedicados músicos da Banda, o qual ocupou o posto durante cerca de 12 anos.
+            A batuta então é passada ao professor e compositor Mário Tintori, diplomado pelo Conservatório Musical “Carlos Gomes”, de São Paulo. Durante a sua jornada, o grupo tem um grande desenvolvimento estrutural, através da criação de sua escola de música e da organização de seu estatuto.
+            Em meados de 1958, Tintori fez uma intensa campanha para a construção da sede própria da Corporação, a qual é inaugurada em 26 de abril de 1959. Nesta ocasião a Banda contava com 19 músicos, número que cresceu acentuadamente com a formação de músicos em sua própria escola.
+            Em 1960, a regência é assumida por Mauro Gonçalves Cerdeira, maestro que com todo seu dinamismo fez da Banda uma autêntica representante da cultura musical de Limeira durante seu legado de quase 50 anos de dedicação e profissionalismo.
+            Em sua brilhante e vitoriosa trajetória, a Corporação Musical Henrique Marques se tornou o patrimônios musical mais representativo da história da cidade, e também é considerada uma das mais antigas do Brasil, em funcionamento ininterrupto desde sua fundação.
+            Durante muitos anos a Banda manteve uma escola de música onde o maestro Mauro Gonçalves Cerdeira formou centenas de músicos que vieram a fazer parte de importantes grupos clássicos, tais como a Orquestra Sinfônica do Estado de São Paulo, Orquestra Sinfônica de Campinas e até mesmo no exterior, mais precisamente da Orquestra Sinfônica da Universidade de Phoenix, nos Estados Unidos. No âmbito militar, a banda também cedeu músicos para a Escola de Cadetes do Exército de Campinas, para a Banda da Polícia Militar de Campinas, e para a Academia da Força Aérea de Pirassununga e de Guarulhos.
+            Entre os prêmios conquistados, destaque para o Segundo lugar no ‘Concurso de Bandas da Rádio e Televisão Tupi’, em São Paulo (1964); Primeiro lugar no ‘Concurso do 1º Centenário de Santos Dumont’, em São Paulo (1973); Hexacampeã do Tetracampeã do ‘Festival Zequinha de Abreu’, em Santa Rita do Passa Quatro (1988-1991 e 1994-1995). A sua discografia inclui quatro long plays (1963, 1965, 1976 e 1977) e um compacto (1968).
+            No ano de 2009, a Corporação inicia uma nova fase, quando o jovem regente Fernando Barreto, então graduando em regência pela UNICAMP assume a direção artística da Banda. Após a comemoração dos 150 anos de fundação, o grupo começa a apresentar concertos sinfônicos com a participação de solistas e cantores de renome.
+            Em 2013, a Banda lança a sua primeira série de concertos, com seis programações, incluindo os espetáculos ‘O Fantástico Mundo de Walt Disney’ (2013) e o ‘Concertos de Natal’ (2013).
+            A Corporação Musical Henrique Marques é reconhecida hoje como um dos maiores patrimônios culturais de Limeira, com o objetivo de continuar difundindo a música de qualidade e formando músicos para um futuro ainda mais brilhante. Ela busca sempre manter viva a memória de seus fundadores, Joaquim Luiz Marques e Henrique Marques.
+        </p>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+
+
+<footer>
+    <p>&copy; 2024 Banda Sinfônica Henrique Marques. Todos os direitos reservados.</p>
+</footer>
+
+{% endblock %}

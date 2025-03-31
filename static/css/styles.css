@@ -1,0 +1,32 @@
+body {
+    background-color: #ADD8E6;
+}
+
+.navbar {
+    background-color: #1874CD !important; /* Azul escuro */
+}
+
+.navbar-brand,
+.nav-link {
+    color: white !important; /* Texto branco */
+}
+
+.nav-link:hover {
+    color: #ffc107 !important; /* Cor de destaque ao passar o mouse */
+}
+
+
+h1 {
+    color: #007bff;
+}
+
+.container {
+    padding: 20px;
+}
+
+/* Acessibilidade */
+.high-contrast {
+    background-color: black;
+    color: white;
+}
+

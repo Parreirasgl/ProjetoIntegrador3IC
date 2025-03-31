@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block 'titulo_head' %} Criar Evento {% endblock %}
+
+{% block 'body_extra' %}
+
+<div style="max-width: 600px; margin: auto; padding: 20px;">
+    <h2 style="text-align: center; color: #333; font-size: 40px; font-weight: bold;">Criar Evento</h2>
+    <form method="post" style="margin-bottom: 20px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; display: flex; flex-direction: column; align-items: stretch;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <!-- Container para os botões -->
+        <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+            
+            <!-- Botão Criar Evento -->
+            <button type="submit" style="padding: 10px; font-size: 14px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%; text-align: center;">
+                Criar Evento
+            </button>
+
+            <!-- Botão Adicionar Novo Evento -->
+            <a href="{% url 'criar_evento' %}" style="text-decoration: none;">
+                <button style="padding: 10px; font-size: 14px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%; text-align: center;">
+                    Adicionar Novo Evento
+                </button>
+            </a>
+
+            <!-- Botão Voltar -->
+            <a href="{% url 'home' %}" style="text-decoration: none;">
+                <button style="padding: 10px; font-size: 14px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%; text-align: center;">
+                    Voltar para Página Principal
+                </button>
+            </a>
+        </div>
+    </form>
+</div>
+
+
+{% endblock  %}

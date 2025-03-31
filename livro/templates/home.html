@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block 'titulo_head' %} Home Page {% endblock %}
+
+{% block 'head_extra' %} 
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@400;700&display=swap">
+
+  <style>
+      h1 {
+          font-family: 'Alegreya SC', serif; /* Use o nome da fonte correta aqui */
+          /* color: rgb(46, 46, 46); */
+      }
+  </style>
+
+{% endblock %}
+
+{% block 'body_extra' %}
+
+<div class="container text-center">
+
+  <h1 class="larger-text">Acervo de Partituras</h1>
+
+  <hr style="background-color: rgb(83, 83, 83);">
+
+  <!-- Filtros -->
+  <form action="" method="GET" class="form-inline mb-2 ml-auto justify-content-between">
+    <!-- Botão para ver filtros -->
+    <button type="button" id="ver-filtros-btn" class="btn btn-info">Ver Filtros</button>
+  
+    <!-- Contêiner que contém todos os filtros, inicialmente escondido -->
+    <div id="filtros" style="display: none;">
+      <label for="categoria" class="mr-2"><strong>Filtrar por Categoria:</strong></label>
+      <select name="categoria" id="categoria" class="form-control mr-2">
+          <option value="">Todas as categorias</option>
+          {% for categoria in categorias %}
+          <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+          {% endfor %}
+      </select>
+  
+      <label for="obra" class="mr-2"><strong>Obra:</strong></label>
+      <select name="obra" id="obra" class="form-control mr-2">
+          <option value="">Todas as obras</option>
+          {% for obra in obras %}
+          <option value="{{ obra }}">{{ obra }}</option>
+          {% endfor %}
+      </select>
+  
+      <label for="classificacao" class="mr-2"><strong>Classificação:</strong></label>
+      <select name="classificacao" id="classificacao" class="form-control mr-2">
+          <option value="">Todas as classificações</option>
+          {% for classificacao in classificacoes %}
+          <option value="{{ classificacao }}">{{ classificacao }}</option>
+          {% endfor %}
+      </select>
+  
+      <label for="compositor" class="mr-2"><strong>Compositor:</strong></label>
+      <select name="compositor" id="compositor" class="form-control mr-2">
+          <option value="">Todos os compositores</option>
+          {% for compositor in compositores %}
+          <option value="{{ compositor }}">{{ compositor }}</option>
+          {% endfor %}
+      </select>
+  
+      <label for="arranjador" class="mr-2"><strong>Arranjador:</strong></label>
+      <select name="arranjador" id="arranjador" class="form-control mr-2">
+          <option value="">Todos os arranjadores</option>
+          {% for arranjador in arranjadores %}
+          <option value="{{ arranjador }}">{{ arranjador }}</option>
+          {% endfor %}
+      </select>
+
+    </br>
+    </br>
+      
+      <!-- Botão de filtrar -->
+      <button type="submit" class="btn btn-info">Filtrar</button>
+  
+      <!-- Botão para ocultar os filtros -->
+      <button type="button" id="ocultar-filtros-btn" class="btn btn-secondary">Ocultar Filtros</button>
+    
+    </div>
+  </form>
+  <!-- Fim dos Filtros -->
+
+    <br>
+    {% if status_categoria == '1' %}
+      <div class="alert alert-success" role="alert">
+        Categoria cadastrada com sucesso
+      </div>
+    {% endif %}
+
+    <div class="row">
+      
+        {% for livro in livros %}
+            <div class="col-md">
+                <div class="card" style="width: 18rem;">
+                  
+                    <div class="card-body">
+
+                      <h5 class="card-title">{{ livro.obra }}</h5>
+                      <p class="card-text"><strong>Categoria:</strong> {{ livro.categoria }}</p>
+                      <p class="card-text"><strong>Classificação:</strong> {{ livro.classificacao }}</p>
+                      <p class="card-text"><strong>Localização:</strong> {{ livro.localizacao }}</p>
+                      <!--<p class="card-text"><strong>Número de exemplares:</strong> {{ livro.exemplares_disponiveis }}</p>-->
+                      <p class="card-text"><strong>Formato:</strong> {{ livro.formato }}</p>
+                     
+                     
+                      <h6 style="display: inline" class="card-subtitle mb-2">Emprestado</h6>
+                      
+                      {% if livro.emprestado %}
+
+                        <svg style="color: green; display: inline;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path d="M13.485 1.431a1.473 1.473 0 0 1 2.104 2.062l-7.84 9.801a1.473 1.473 0 0 1-2.12.04L.431 8.138a1.473 1.473 0 0 1 2.084-2.083l4.111 4.112 6.82-8.69a.486.486 0 0 1 .04-.045z"/>
+                        </svg>
+                      {% else %}
+            
+                        <svg style="color: red; display: inline;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
+                        </svg>
+                      {% endif %}
+
+                        <br>
+                        <br>
+                      
+                          
+                      <a href="{% url 'ver_livros' livro.id %}" class="btn btn-info" aria-label="{{ livro.obra }}">Acessar</a>
+                        
+
+                      <!-- <a href="{% url 'ver_livros' livro.id %}">
+                        <button class="btn btn-info" aria-label="{{ livro.obra }}">Acessar</button>
+                      </a> -->
+                      
+                    </div>
+
+
+                </div>
+                <br>
+            </div>
+           
+           
+    
+        {% endfor %}
+        
+
+    
+    
+    </div>
+</div>
+
+<script>
+  // Script para ocultar filtros
+  
+  // Pega os elementos relevantes
+  const verFiltrosBtn = document.getElementById('ver-filtros-btn');
+  const ocultarFiltrosBtn = document.getElementById('ocultar-filtros-btn');
+  const filtrosDiv = document.getElementById('filtros');
+
+  // Mostra os filtros e oculta o botão "Ver Filtros" quando clicado
+  verFiltrosBtn.addEventListener('click', function() {
+    filtrosDiv.style.display = 'block';  // Mostra os filtros
+    verFiltrosBtn.style.display = 'none';  // Esconde o botão "Ver Filtros"
+  });
+
+  // Oculta os filtros e mostra o botão "Ver Filtros" novamente
+  ocultarFiltrosBtn.addEventListener('click', function() {
+    filtrosDiv.style.display = 'none';  // Esconde os filtros
+    verFiltrosBtn.style.display = 'block';  // Mostra o botão "Ver Filtros"
+  });
+</script>
+
+{% endblock %}

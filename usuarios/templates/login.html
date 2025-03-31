@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block 'titulo_head' %} Login {% endblock %}
+
+{% block 'head_extra' %} 
+
+<style>
+    
+    .background {
+        /* background-image: url('https://scontent.fcpq8-1.fna.fbcdn.net/v/t39.30808-6/325147756_1539843419828431_87194455277469121_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=5xdX8WMfpwUQ7kNvgE5m9dL&_nc_ht=scontent.fcpq8-1.fna&oh=00_AYAO6uzq2oWHNhZHOQKsvk6SjXG78MTYabo7RmhGu_-mEA&oe=66558C69'); */
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .card {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 400px;
+        width: 100%;
+        box-shadow: 5px 5px 25px rgba(255, 255, 255, 0.5);
+    }
+    
+    footer {
+        background-color: #333; /* Cor de fundo do rodapé para contraste */
+        color: white; /* Cor do texto do rodapé */
+        padding: 10px; /* Espaçamento interno do rodapé */
+        text-align: center; /* Centraliza o texto no rodapé */
+        position: fixed; /* Fixa o rodapé na parte inferior da página */
+        width: 100%; /* Largura total do rodapé */
+        bottom: 0; /* Posiciona o rodapé na parte inferior */
+    }
+    
+    footer a {
+        color: #1e90ff; /* Cor do link no rodapé */
+    }
+    
+    footer a:hover {
+        color: #ff6347; /* Cor do link ao passar o mouse */
+    }
+    
+    footer p {
+        display: inline-block; /* Coloca os parágrafos na mesma linha */
+        margin: 0; /* Remove margens para evitar espaçamento extra */
+    }
+
+</style>
+
+{% endblock %}
+
+{% block 'body_extra' %}
+
+<!-- Menu de navegação superior -->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1874CD;">
+    <a class="navbar-brand" href="#" style="color: white;">Informações da banda</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'sobre' %}" style="color: white;">Sobre</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'evento' %}" style="color: white;">Eventos</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'galeria' %}" style="color: white;">Galeria</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contato' %}" style="color: white;">Contato</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+
+<!-- Conteúdo da página de login -->
+<div class="background">
+    <div class="card">
+        <h2 style="text-align: center; color: #1874CD;">Área exclusiva para membros da Banda Henrique Marques.</h2>
+        {% if status == '1' %}
+        <div class="alert alert-danger" role="alert">
+            Email ou senha inválidos
+        </div>
+        {% endif %}
+
+        {% if status == '2' %}
+        <div class="alert alert-danger" role="alert">
+            Faça login antes de tentar acessar o sistema
+        </div>
+        {% endif %}
+
+        <h1>Login</h1>
+
+        <hr style="background-color: rgb(83, 83, 83);">
+
+        <form method="POST" action="{% url 'validar_login' %}">{% csrf_token %}
+            <label>Email</label>
+            <input name="email" class="form-control" type="text" placeholder="Email..." aria-label="Preencha seu email aqui">
+            <br>
+            <label>Senha</label>
+            <input name="senha" class="form-control" type="password" placeholder="Senha..." aria-label="Insira sua senha aqui">
+            <br>
+            <input class="btn btn-info btn-lg" type="submit" value="Enviar">
+           <!-- <a href="{% url 'cadastro' %}" class="btn btn-warning btn-lg">Cadastro</a> -->
+        </form>
+    </div>
+</div>
+
+    <footer>
+        <p><a href="https://www.facebook.com/bandahenriquemarques" target="_blank">Facebook Banda Henrique Marques.</a></p>
+        <p>Fonte da imagem: <a href="https://scontent.fcpq8-1.fna.fbcdn.net/v/t39.30808-6/325147756_1539843419828431_87194455277469121_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=5xdX8WMfpwUQ7kNvgE5m9dL&_nc_ht=scontent.fcpq8-1.fna&oh=00_AYAO6uzq2oWHNhZHOQKsvk6SjXG78MTYabo7RmhGu_-mEA&oe=66558C69" target="_blank">Banda Henrique Marques</a></p>
+    </footer>
+
+{% endblock %}

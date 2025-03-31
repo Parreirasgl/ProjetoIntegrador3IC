@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - Banda Sinfônica Henrique Marques</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link para o arquivo CSS estático -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Banda Sinfônica Henrique Marques</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="{% url 'sobre' %}">Sobre</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'eventos' %}">Eventos</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'galeria' %}">Galeria</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'contato' %}">Contato</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="accessibilityDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Acessibilidade</a>
+                    <div class="dropdown-menu" aria-labelledby="accessibilityDropdown">
+                        <a class="dropdown-item" href="#" onclick="toggleContrast()">Autocontraste</a>
+                        <a class="dropdown-item" href="#" onclick="zoomIn()">Aumentar Zoom</a>
+                        <a class="dropdown-item" href="#" onclick="zoomOut()">Reduzir Zoom</a>
+                    </div>
+                </li>
+            </ul>
+
+        <!-- Botão de login à direita -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="btn btn-primary nav-link text-white" href="{% url 'sair' %}">Login</a>
+            </li>
+        </ul>
+
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1>Sobre a Banda Sinfônica Henrique Marques</h1>
+               
+        <img src="https://scontent.fcpq8-1.fna.fbcdn.net/v/t39.30808-6/405553610_834362732030496_2630956889426684644_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=hzr5HoLMq34Q7kNvgEOqTTz&_nc_zt=23&_nc_ht=scontent.fcpq8-1.fna&_nc_gid=A8XzqZ2etw4lGdkSIdKe0Z-&oh=00_AYAFFmhEurdEJxar3vw56Ga2L5PBpq1ALvQnkRvJbpsg5A&oe=6725E9F7" alt="Descrição da imagem" width="500" style="margin-bottom: 60px; margin-top: 60px;">
+   
+        <p>Corria o ano de 1860. Limeira era pequena, até acanhada, seus poucos habitantes viram chegar naquela manhã, um homem de cor, acompanhado de um menino de  12 anos. Não traziam malas nem bagagem. Traziam apenas a pobre e modesta roupa do corpo. Entretanto, o homem trazia dentro da alma o que há de mais sublime na criatura humana, a vocação musical. Ele era professor de música.</p>
+        <p>Em poucas semanas Joaquim Luiz Marques – este era o seu nome – conquistou o respeito de todos. Passou a ensinar música aos filhos de Limeira. Tal era a sua vontade de ensinar e o seu entusiasmo para com a música que no dia 06 de novembro de 1860, o povo admirado saía às ruas para ouvir a Lyra d’Oeste. Estava formada a primeira banda de música de Limeira – uma das primeiras do estado de São Paulo. A Banda, garbosa, marchava pelas ruas e suas clarinadas anunciavam a todos que Limeira possuía uma Banda de Música. E desde então, a Lyra d’Oeste nunca deixou de tocar. Negro, o fundador da Banda havia sentido na própria pele os horrores da escravidão, e entrou de corpo e alma na luta pela liberdade dos escravos.</p>
+        <p>Quando os arautos da liberdade chegavam à Limeira para grandes comícios e movimentos de libertação, lá estava o mestre Joaquim com a sua Banda, oferecendo música para a liberdade. Nomes como Joaquim Nabuco, José do Patrocínio, André Rebouças, dentre outros grandes líderes da libertação negra certamente usaram o verbo inflamado das praças públicas, dominados pela música de Joaquim Luiz Marques.<p>
+        <p>Em 1892, o mestre Joaquim Luiz Marques fechou os olhos para sempre. Ficara em Limeira durante 32 anos, se dedicando ao ensino da divina arte, de modo a contribuir para cultivar de toda a beleza ostentada pela música. Após a morte de Joaquim, a diretoria decidiu passar a batuta para seu filho, Henrique Marques.<p>
+        <p>O jovem não decepcionou a memória de seu velho pai. Assim, a Lyra d’Oeste continuava à transbordar a cidade de Limeira com sua admirável qualidade musical. Tendo herdado a inteligência, a bondade e o completo domínio da bela arte, Henrique Marques em pouco tempo sentiu seu nome correr por todas as cidades onde a Banda se apresentava. Diante deste notável domínio musical , o povo passou à se referir à Banda Lyra d’Oeste como Corporação Musical Henrique Marques, nome mantido até os dias de hoje.<p>
+        <p>Aos 18 dias do mês de dezembro de 1936, a cidade mais uma vez caiu em prantos, Henrique Marques partiu para a morada dos justos. Limeira cobriu-se de luto para chorar a morte de um autêntico artista. . A Corporação precisava de um novo regente, e o posto é então atribuído ao senhor Benício Zacharias, então um dos mais dedicados músicos da Banda, o qual ocupou o posto durante cerca de 12 anos.<p>
+        <p>A batuta então é passada ao professor e compositor Mário Tintori, diplomado pelo Conservatório Musical “Carlos Gomes”, de São Paulo. Durante a sua jornada, o grupo tem um grande desenvolvimento estrutural, através da criação de sua escola de música e da organização de seu estatuto.<p>
+        <p>Em meados de 1958, Tintori fez uma intensa campanha para a construção da sede própria da Corporação, a qual é inaugurada em 26 de abril de 1959. Nesta ocasião a Banda contava com 19 músicos, número que cresceu acentuadamente com a formação de músicos em sua própria escola.<p>
+        <p>Em 1960, a regência é assumida por Mauro Gonçalves Cerdeira, maestro que com todo seu dinamismo fez da Banda uma autêntica representante da cultura musical de Limeira durante seu legado de quase 50 anos de dedicação e profissionalismo.<p>
+        <p>Em sua brilhante e vitoriosa trajetória, a Corporação Musical Henrique Marques se tornou o patrimônios musical mais representativo da história da cidade, e também é considerada uma das mais antigas do Brasil, em funcionamento ininterrupto desde sua fundação.<p>
+        <p>Durante muitos anos a Banda manteve uma escola de música onde o maestro Mauro Gonçalves Cerdeira formou centenas de músicos que vieram a fazer parte de importantes grupos clássicos, tais como a Orquestra Sinfônica do Estado de São Paulo, Orquestra Sinfônica de Campinas e até mesmo no exterior, mais precisamente da Orquestra Sinfônica da Universidade de Phoenix, nos Estados Unidos. No âmbito militar, a banda também cedeu músicos para a Escola de Cadetes do Exército de Campinas, para a Banda da Polícia Militar de Campinas, e para a Academia da Força Aérea de Pirassununga e de Guarulhos.<p>
+        <p>Entre os prêmios conquistados, destaque para o Segundo lugar no ‘Concurso de Bandas da Rádio e Televisão Tupi’, em São Paulo (1964); Primeiro lugar no ‘Concurso do 1º Centenário de Santos Dumont’, em São Paulo (1973); Hexacampeã do Tetracampeã do ‘Festival Zequinha de Abreu’, em Santa Rita do Passa Quatro (1988-1991 e 1994-1995). A sua discografia inclui quatro long plays (1963, 1965, 1976 e 1977) e um compacto (1968).<p>
+        <p>No ano de 2009, a Corporação inicia uma nova fase, quando o jovem regente Fernando Barreto, então graduando em regência pela UNICAMP assume a direção artística da Banda. Após a comemoração dos 150 anos de fundação, o grupo começa a apresentar concertos sinfônicos com a participação de solistas e cantores de renome.<p>
+        <p>Em 2013, a Banda lança a sua primeira série de concertos, com seis programações, incluindo os espetáculos ‘O Fantástico Mundo de Soleil’, ‘Réquiem de Fauré’, ‘Grandes Musicais’, ‘Uma noite no Cinema’, ‘Libertadores’ e ‘Concerto do Advento’, sendo as cinco últimas com entrada gratuita. Em parceria com a confraria da tradicional Igreja Boa Morte, passa a realizar a série anula ‘Concertos do Patrimônio’, no espaço da histórica igreja.<p>
+        <p>Neste mesmo ano, pensando em se aproximar e expandir o seu público, é fundada a Street Band Henrique Marques, grupo itinerante de jazz que desenvolve o projeto didático ‘Arte com Arte’, voltado para escolas infantis e participa de uma série de outros eventos. Além disso, passa a utilizar o nome Banda Henrique Marques, inaugurado o seu site oficial, o seu canal no YouTube e passando a manter também uma fanpage ativa no Facebook.<p>
+        <p>Em 2014 lança a série ‘Concertos do Patrimônio’ com dez concertos gratuitos, entre os destaques estão na estreia mundial da abertura ‘Xenophon of Athens’, com permissão autoral do compositor Zaidi Sabtu-Ramli (Cingapura), a interpretação de obras como ‘Colors para Trombone’, com solo de Wilson Dias, Concerto para Saxofone de Lars- Erick Larson, transcrito e interpretado por Maikel Morelli, e ‘As Quatro Estações do Hermeto’, do compositor Miguel Briamonte. Outra produção de destaque foi o concerto didático ‘Coisas de Criança’, programa voltado ao público infantil que contou com a participação do renomado grupo de palhaços ‘Cirurgiões da Alegria’.<p>
+        <p>Na atual temporada, a Banda se programa para apresentar suítes sinfônicas como ‘Os Planetas’, de Gustav Holst; ‘Quadros de uma Exposição’, de Modest Mousorgsky, e ‘Pinheiros de Roma’, de Ottorino Respighi. A temporada conta ainda com espetáculos temáticos como o tributo ‘Michael Jackson Sinfônico’, ‘Jazz, jazz, jazz!’ e ‘Paisagens Latinas’, além do musical ‘West Side Story’, em parceria com o Instituto de Artes da Unicamp - Campinas. O destaque da temporada será a visita internacional do compositor Zaidi Sabtu-Ramil (Cingapura) e do eufonista Marc Glover (Ingleterra) que farão a estréia mundial de Euforia, concerto para eufonio e banda, fazendo parte das comemorações do 155º aniversário da corporação.<p>
+        
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>
+

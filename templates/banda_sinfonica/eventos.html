@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block 'titulo_head' %} Eventos {% endblock %}
+
+{% block 'body_extra' %}
+
+<!-- Menu de navegação superior -->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1874CD;">
+    <a class="navbar-brand" href="#" style="color: white;">Informações sobre Eventos</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'sobre' %}" style="color: white;">Sobre</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'evento' %}" style="color: white;">Eventos</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'galeria' %}" style="color: white;">Galeria</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contato' %}" style="color: white;">Contato</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'sair' %}" style="color: white;">Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Container com margem lateral de 20px, fundo #ADD8E6 e largura limitada para o texto -->
+<div style="padding: 0 20px;">
+    <!-- Título do evento com tamanho 20 e negrito -->
+    <h1 style="font-size: 20px; font-weight: bold; text-align: center;">Eventos Programados</h1>
+    
+    <!-- Tabela de Eventos -->
+    <table class="table table-bordered" style="width: 100%; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th>Título do Evento</th>
+                <th>Data e Hora</th>
+                <th>Descrição</th>
+                <th>Local</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Evento 1 -->
+            <tr>
+                <td>Retreta na Praça Toledo Barros</td>
+                <td>06/10/2024 10:30</td>
+                <td>Retreta na Praça Toledo Barros</td>
+                <td>Praça Toledo Barros</td>
+            </tr>
+            <!-- Evento 2 -->
+            <tr>
+                <td>Concerto IV</td>
+                <td>17/10/2024 20:30</td>
+                <td>Concerto IV, Descentralizado</td>
+                <td>Teatro Vitória</td>
+            </tr>
+            <!-- Evento 3 -->
+            <tr>
+                <td>Retreta na Praça Toledo Barros</td>
+                <td>20/10/2024 10:30</td>
+                <td>Retreta na Praça Toledo Barros</td>
+                <td>Praça Toledo Barros</td>
+            </tr>
+            <!-- Evento 4 -->
+            <tr>
+                <td>Retreta na Praça Toledo Barros</td>
+                <td>03/11/2024 10:30</td>
+                <td>Retreta na Praça Toledo Barros</td>
+                <td>Praça Toledo Barros</td>
+            </tr>
+            <!-- Evento 5 -->
+            <tr>
+                <td>Concerto V</td>
+                <td>17/11/2024 20:30</td>
+                <td>Concerto V, A Confirmar</td>
+                <td>Teatro Vitória</td>
+            </tr>
+            <!-- Evento 6 -->
+            <tr>
+                <td>Retreta na Praça Toledo Barros</td>
+                <td>01/12/2024 10:30</td>
+                <td>Retreta na Praça Toledo Barros</td>
+                <td>Praça Toledo Barros</td>
+            </tr>
+            <!-- Evento 7 -->
+            <tr>
+                <td>Concerto de Natal</td>
+                <td>15/12/2024 20:30</td>
+                <td>Concerto de Natal, A Confirmar</td>
+                <td>Teatro Vitória</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <!-- Mapa -->
+    <h2 style="text-align: center; margin-top: 30px;">Localização do Evento</h2>
+    <div id="map" style="height: 400px; width: 100%; margin-top: 20px;"></div>
+</div>
+
+<footer>
+    <p style="text-align: center;">&copy; 2024 Banda Sinfônica Henrique Marques. Todos os direitos reservados.</p>
+</footer>
+
+<!-- Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&callback=initMap" async defer></script>
+
+<script>
+  function initMap() {
+    var geocoder = new google.maps.Geocoder();
+    var endereco = 'Praça Toledo de Barros, s/n - Centro, Limeira - SP, Brasil';
+
+    geocoder.geocode({ 'address': endereco }, function(results, status) {
+      if (status == 'OK') {
+        var mapOptions = {
+          zoom: 14,
+          center: results[0].geometry.location
+        };
+        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        
+        var marker = new google.maps.Marker({
+          position: results[0].geometry.location,
+          map: map,
+          title: 'Praça Toledo de Barros'
+        });
+      } else {
+        alert('Não foi possível localizar o endereço: ' + status);
+      }
+    });
+  }
+</script>
+<br>
+<br>
+<br>
+
+{% endblock %}

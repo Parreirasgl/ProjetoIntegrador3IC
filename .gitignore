@@ -1,0 +1,48 @@
+# Arquivos do Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+.env
+.env.local
+.env*.local
+
+# Diretórios de ambiente virtual
+venv/
+env/
+.venv/
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Arquivos de configuração local
+settings/local.py
+*.local.py
+
+# Dependências (se não usar requirements.txt)
+pip-selfcheck.json
+.Python
+
+# Arquivos estáticos coletados (em produção)
+staticfiles/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Test coverage
+.coverage
+htmlcov/
+
+# Celery
+celerybeat-schedule.*
+
+# Banco de dados (exceto SQLite, comum em dev)
+*.db
+*.sql
+*.sqlite

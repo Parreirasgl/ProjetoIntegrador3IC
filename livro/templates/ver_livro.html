@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+
+{% load filtros %}
+
+{% block 'titulo_head' %} Detalhes do Livro {% endblock %}
+
+{% block 'body_extra' %}
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" >Deseja mesmo excluir ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+
+        <a href="{% url 'excluir_livro' id_livro %}" class="btn btn-danger">Excluir</a>
+         
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+  <div class="container">
+      <br>
+      <!-- <style>
+        /* Define a cor do texto da label */
+        label {
+            color: rgb(46, 46, 46);
+        }
+    </style> -->
+    <form action="{% url 'alterar_livro' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="{{livro.id}}" name="livro_id">
+
+        <p>
+          <label>Compositor:</label>
+          <input class="form-control" type="texte" value="{{livro.compositor}}" aria-label="compositor">
+        </p>
+
+        <p>
+          <label>Arranjador:</label>
+          <input class="form-control" type="texte" value="{{livro.arranjador}}" aria-label="arranjador">
+        </p>
+
+        <p>
+          <label>Nome da Obra:</label>
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.obra}}" name="obra" aria-label="nome da obra">
+        </p>
+
+        <p>
+          <label>Classificação:</label>
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.classificacao}}" name="classificacao" aria-label="classificação">
+        </p>
+
+        <p>
+          <label>Conteúdo:</label>
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.conteudo}}" name="conteudo" aria-label="conteúdo">
+        </p>
+
+        <p>
+          <label>Edição:</label>
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.edicao}}" name="edicao" aria-label="edição">
+        </p>
+
+        <p>
+          <label>Localização:</label>
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.localizacao}}" name="localizacao" aria-label="localização">
+        </p>
+       <!--
+        <p>
+          <label>Exemplares disponíveis:</label>
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.exemplares_disponiveis}}" name="exemplares_disponiveis">
+        </p>
+      -->
+
+        <p>
+          <label>Formato:</label>
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.formato}}" name="formato" aria-label="formato">
+        </p>
+
+
+        <p>
+          <label>Observações:</label>
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.observacao}}" name="observacao" aria-label="observação">
+        </p>
+
+        <p>
+          <label>Observações Gerais:</label>
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.observacoes_gerais}}" name="observacoes_gerais" aria-label="observações gerais">
+        </p>
+
+        <label>Categoria:</label>
+        <select style="width: 20%;" class="form-control" name="categoria_id" aria-label="categoria">
+          
+          {% for i in categoria_livro%}
+          
+            {% if livro.categoria.nome == i.nome %}
+              <option value="{{i.id}}" selected>{{i}}</option>
+            {% else %}
+
+              <option value="{{i.id}}">{{i}}</option>
+            {% endif%}
+          {% endfor %}
+          
+
+          
+        </select>
+
+        
+        <br>
+
+        <p>
+          <label >Data:</label>
+          <p>{{livro.data_cadastro}}</p>
+        </p>
+      
+        <br>
+       
+        
+          <label>Emprestado</label>
+          {% if livro.emprestado %}
+
+            <svg style="color: green" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+              <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+            </svg>
+        
+          {% else %}
+            <svg style="color: red" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        
+          {% endif %}
+          <br>
+          <br>
+
+        
+    
+        
+
+        <input type="submit" class="btn btn-success btn-lg" value="Salvar">
+    </form>
+    <br>
+    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal2">
+      Excluir
+    </button>
+    
+    <hr>
+    <h2>Histórico de Retiradas</h2>
+    
+    <table class="table table-striped" role="grid" aria-label="Histórico de Retiradas">
+      <thead>
+        <tr class="livro">
+          <th scope="col">Nome</th>
+          <th scope="col">Data Retirada</th>
+          <th scope="col">Data Devolução</th>
+          <th scope="col">Tempo de Duração</th>
+          <!-- <th scope="col" style="color: white;">Avaliação do estado do material</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in emprestimos %}
+          <tr class="livro">
+            {% if i.nome_emprestado_anonimo == None %}
+              <th scope="row" tabindex="0">
+                {{ i.nome_emprestado }}</th>
+            {% else %}
+            <th scope="row" tabindex="0">
+                {{ i.nome_emprestado_anonimo }}</th>
+            {% endif %}
+            <td tabindex="0">{{ i.data_emprestimo }}</td>
+            <td tabindex="0">{{ i.data_devolucao }}</td>
+            <td tabindex="0">{{ i.data_devolucao|mostra_duracao:i.data_emprestimo }}</td>
+            <td>
+              <!-- {% if i.avaliacao == None %}
+                <button onclick="avaliacao({{i.id}})" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">AVALIAR</button>
+              {% else%}
+                {{i.avaliacao}}
+              {% endif %}-->
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    
+    
+  
+  </div>
+
+
+<!--
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Avaliar empréstimo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'processa_avaliacao' %}" method="POST">{% csrf_token %}
+          <input type="hidden" name="id_livro" value="{{id_livro}}">
+          <input id="id_emprestimo" type="hidden" name="id_emprestimo">
+          <select class="form-control" name="opcoes">
+            <option value="P">Péssimo</option>
+            <option value="R">Ruim</option>
+            <option value="B">Bom</option>
+            <option value="O">Ótimo</option>
+          <select>
+          <br>
+          <input type="submit" class="btn btn-info" value="Avaliar">
+        </form>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+  function avaliacao(id_emprestimo){
+      input_emprestimo = document.getElementById('id_emprestimo')
+      input_emprestimo.value = id_emprestimo
+
+
+  }
+
+</script>
+-->
+
+{% endblock %}

@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+
+    <!-- Título do head -->
+    <title>{% block 'titulo_head' %} {% endblock %}</title>
+   
+    <!-- Estilo CSS -->
+    <style>
+
+        body {
+            /* background-image: url('https://scontent.fplu19-1.fna.fbcdn.net/v/t39.30808-6/461338423_1053425566790877_2811137426748909039_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=AbEja7cyGMAQ7kNvgF0RgWt&_nc_ht=scontent.fplu19-1.fna&_nc_gid=AGMDoB-d5Tv9u2CjFLQ6-ZP&oh=00_AYBtPg7Hy8H_Y6B4r0_uBERwW7JOp_LBbn_JpZnk_sirxw&oe=6704AFFA'); */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Para manter a imagem fixa enquanto rola a página */
+            /* background-color: antiquewhite; Cor de fundo */
+            background-color: #f0f0f0; /* Cor de fundo */
+            color:#040100
+        }
+
+        .table.table-striped {
+            color:#040100
+        }
+
+        footer {
+            background-color: #333; /* Cor de fundo do rodapé para contraste */
+            color: white; /* Cor do texto do rodapé */
+            padding: 10px; /* Espaçamento interno do rodapé */
+            text-align: center; /* Centraliza o texto no rodapé */
+            position: fixed; /* Fixa o rodapé na parte inferior da página */
+            width: 100%; /* Largura total do rodapé */
+            bottom: 0; /* Posiciona o rodapé na parte inferior */
+        }
+
+        footer a {
+            color: #1e90ff; /* Cor do link no rodapé */
+        }
+
+        footer a:hover {
+            color: #ff6347; /* Cor do link ao passar o mouse */
+        }
+
+        footer p {
+            display: inline-block; /* Coloca os parágrafos na mesma linha */
+            margin: 0; /* Remove margens para evitar espaçamento extra */
+        }  
+
+        .card {
+            background-color: white;
+            border-radius:20px;
+            box-shadow: 5px 5px 25px rgba(255, 255, 255, 0.5); 
+        }
+
+        /* Estilos de alto contraste */
+        body.alto-contraste {
+            background-color: black;
+            color: white;
+        }
+
+        .livro.alto-contraste {
+            color: white;
+        }
+
+        .card.alto-contraste {
+            background-color: black;
+            color: white;
+            box-shadow: 5px 5px 25px rgba(255, 255, 255, 0.5);
+        }
+
+        body.alto-contraste table {
+            background-color: #333333;  /* Fundo escuro para as tabelas */
+            color: #ffffff;  /* Texto claro nas tabelas */
+        }
+
+    </style>
+
+    <!-- Conteúdo extra do head -->
+    {% block 'head_extra' %} {% endblock %}
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" style="font-family: 'NomeDaFonte', sans-serif; font-size: 24px; color: #ffffff;" href="{% url 'home' %}">Banda Sinfônica Henrique Marques</a>
+    
+    <!-- Botão alto contraste -->
+    <div>
+        <button id="btn-alto-contraste" class="btn btn-secondary" onclick="toggleContraste()">Ativar Alto Contraste</button>
+    </div>
+    <!-- fim  Botão Ajuste do botão alto contraste, ver script -->
+    <!-- Botão ajuste do tamanho da fonte -->
+    <div class="d-flex align-items-center">
+    <div class="text-controls" style="color: white; margin-right: 20px; font-size: 16px;">
+        Tamanho da Fonte: 
+        <button id="increase-font" class="btn btn-secondary btn-sm">+</button>
+        <button id="decrease-font" class="btn btn-secondary btn-sm">-</button>
+    </div>
+    <!-- fim  Botão Ajuste do tamanho da fonte, ver script -->
+    {% if usuario_logado %}
+    <div class="dropdown show">
+        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+            Menu
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+            <button type="button" class="btn btn-secondary dropdown-item" data-toggle="modal" data-target="#exampleModal">Opções</button>
+            <a href="{% url 'seus_emprestimos' %}" class="btn btn-danger dropdown-item" >Retirados</a>
+            <a href="{% url 'seus_emprestimos' %}" class="btn btn-danger dropdown-item" >Criar Evento</a>
+            <a href="{% url 'sair'%}" class="btn btn-danger dropdown-item">Sair</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item">Total: {{total_livro}}</a>
+        </div>
+    </div>
+    {% endif %}
+</nav>
+
+
+{% if usuario_logado %}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cadastrar / Retirar / Devolver</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--
+                <button style="margin-left: 10px;" onclick="mostrar_form(1)" class="btn btn-info">Categoria</button> -->
+                <button style="margin-left: 10px;" onclick="mostrar_form(2)" class="btn btn-warning">Obra</button>
+                <button style="margin-left: 10px;" onclick="mostrar_form(3)" class="btn btn-secondary">Retirar
+                </button>
+                <button style="margin-left: 10px;" onclick="mostrar_form(4)" class="btn btn-danger">Devolução</button>
+                <br>
+
+                <hr>
+                <div style="display: none;" id="livro">
+                    <form action="{% url 'cadastrar_livro' %}" method="POST">
+                        {% csrf_token %}
+                        <table>
+                            {{form.as_table}}
+                        </table>
+
+                        <input type="submit" class="btn btn-success" value="Cadastrar">
+                        
+                        <hr>
+                        
+                        <!-- botão de upload 
+                        <div class="row">
+                            <div class="col">
+                             <button style="margin-left: 10px;" onclick="mostrar_form(2)" class="btn btn-warning">Upload Obra</button>
+                           </div>
+                           <br>
+                           <div class="col">
+                             <input type="file" class="btn btn-primary">
+                           </div>
+                         </div>
+                            botão de upload -->
+
+                    </form>
+                </div>
+
+
+                <div style="display: none;" id="categoria">
+                    <form action="{% url 'cadastrar_categoria' %}" method="POST">{% csrf_token %}
+                        <table>
+                            {{form_categoria.as_table}}
+                        </table>
+                        <input type="hidden" name="usuario" value="{{usuario_logado}}">
+                        <input class="btn btn-success" type="submit" value="Enviar">
+                    </form>
+                </div>
+
+                <div style="display: none;" id="emprestimos">
+                    <button onclick="exibe_input_emprestado(1)" class="btn btn-success">Usuário novo</button>
+                    <button onclick="exibe_input_emprestado(2)" class="btn btn-dark">Usuario existente</button>
+                    <br>
+                    <br>
+                    <form id="form_emprestimo" action="{% url 'cadastrar_emprestimo' %}" method="POST">{% csrf_token %}
+                        <select style="display: none;" id="nome_emprestado" class="form-control"
+                                name="nome_emprestado">
+
+                            {% for usuario in usuarios %}
+                            <option value="{{usuario.id}}">{{usuario.nome}}</option>
+                            {% endfor %}
+
+                        </select>
+                        
+                        <br>
+                        <input id="nome_emprestado_anonimo" type="text" placeholder="Digite o nome para quem emprestou..."
+                               name="nome_emprestado_anonimo" class="form-control">
+                        <br>
+                        <select class="form-control" name="livro_emprestado">
+
+                            {% for livro in livros_emprestar %}
+                            <option value="{{livro.id}}">{{livro.obra}}</option>
+                            {% endfor %}
+
+                        </select>
+
+                        <br>
+                        <input type="submit" value="Retirar" class="btn btn-success">
+                    </form>
+                </div>
+
+                <div style="display: none;" id="devolucao">
+                    <form action="{% url 'devolver_livro' %}" method="POST">{% csrf_token %}
+                        <select class="form-control" name="id_livro_devolver">
+
+                            {% for livro in livros_emprestados %}
+                            <option value="{{livro.id}}">{{livro.obra}}</option>
+                            {% endfor %}
+
+
+                        </select>
+                        <br>
+
+                        <input type="submit" class="btn btn-warning" value="Devolver">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+    <!-- Conteúdo da página -->
+    {% block 'body_extra' %} {% endblock %}
+
+    <!-- Rodapé da página
+    <footer>
+        <p><a href="https://www.facebook.com/bandahenriquemarques" target="_blank">Facebook Banda Henrique Marques.</a></p>
+        <p>Fonte da imagem: <a href="https://scontent.fcpq8-1.fna.fbcdn.net/v/t39.30808-6/325147756_1539843419828431_87194455277469121_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=5xdX8WMfpwUQ7kNvgE5m9dL&_nc_ht=scontent.fcpq8-1.fna&oh=00_AYAO6uzq2oWHNhZHOQKsvk6SjXG78MTYabo7RmhGu_-mEA&oe=66558C69" target="_blank">Banda Henrique Marques</a></p>
+    </footer> 
+    -->
+
+<!-- Scripts -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+    //Script para esconder filtros
+    
+    function mostrar_form(v1) {
+        categoria = document.getElementById('categoria')
+        livro = document.getElementById('livro')
+        emprestimo = document.getElementById('emprestimos')
+        devolucao = document.getElementById('devolucao')
+
+        if (v1 == 1) {
+            categoria.style.display = 'block';
+
+            devolucao.style.display = 'none';
+            livro.style.display = 'none';
+            emprestimo.style.display = 'none';
+        } else if (v1 == 2) {
+            livro.style.display = 'block';
+
+            devolucao.style.display = 'none';
+            categoria.style.display = 'none';
+            emprestimo.style.display = 'none';
+
+        } else if (v1 == 3) {
+            emprestimo.style.display = 'block';
+
+            devolucao.style.display = 'none';
+            categoria.style.display = 'none';
+            livro.style.display = 'none';
+
+        } else if (v1 == 4) {
+            devolucao.style.display = 'block';
+
+            categoria.style.display = 'none';
+            livro.style.display = 'none';
+            emprestimo.style.display = 'none';
+        }
+
+    }
+
+    function exibe_input_emprestado(v1) {
+
+        if (v1 == 1) {
+            document.getElementById('nome_emprestado').style.display = "none"
+            document.getElementById('nome_emprestado_anonimo').style.display = "block"
+
+        } else {
+            document.getElementById('nome_emprestado').style.display = "block"
+            document.getElementById('nome_emprestado_anonimo').style.display = "none"
+
+        }
+
+    }
+
+    //Script para alto contraste
+
+    function toggleContraste() {
+    // Alterna a classe 'alto-contraste' no corpo da página
+        document.body.classList.toggle('alto-contraste');
+        lista_livros = document.getElementsByClassName("livro");
+        for (i of lista_livros) {
+            i.classList.toggle('alto-contraste');
+        lista_cards = document.getElementsByClassName("card");
+        }
+        for (j of lista_cards) {
+            j.classList.toggle('alto-contraste');
+        }
+
+    // Salva a preferência do usuário no localStorage
+        if (document.body.classList.contains('alto-contraste')) {
+            localStorage.setItem('contraste', 'ativo');
+        } else {
+            localStorage.removeItem('contraste');
+        }
+        }
+    
+    // Ao carregar a página, verifica se o usuário já ativou o alto contraste antes
+        window.onload = function() {
+            lista_livros = document.getElementsByClassName("livro");
+            lista_cards = document.getElementsByClassName("card");
+            if (localStorage.getItem('contraste') === 'ativo') {
+                document.body.classList.add('alto-contraste');
+                for (i of lista_livros) {
+                    i.classList.add('alto-contraste');
+                }
+                for (j of lista_cards) {
+                    j.classList.add('alto-contraste');
+                }
+            }
+        }
+
+    //Script pra ajuste do tamanho da fonte
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const increaseButton = document.getElementById('increase-font');
+        const decreaseButton = document.getElementById('decrease-font');
+        
+        // Seletor para os elementos cujas fontes serão ajustadas
+        const elements = document.querySelectorAll('body, p, h1, h2, h3, h4, h5, h6, button, nav, a, span, li, input, select, textarea');
+        const largerTextElements = document.querySelectorAll('.larger-text'); // Seleciona textos maiores
+
+        let currentFontSize = 16; // Tamanho padrão do texto em pixels
+
+        // Função para ajustar o tamanho da fonte em todos os elementos
+        function setFontSize(size) {
+            elements.forEach(element => {
+                element.style.fontSize = size + 'px';
+            });
+            // Ajusta a fonte para os elementos com .larger-text para que fiquem maiores
+            largerTextElements.forEach(element => {
+                element.style.fontSize = (size * 3) + 'px'; // O dobro do tamanho
+            });
+        }
+
+        increaseButton.addEventListener('click', function () {
+            currentFontSize += 2; // Aumenta o tamanho do texto
+            setFontSize(currentFontSize);
+        });
+
+        decreaseButton.addEventListener('click', function () {
+            if (currentFontSize > 10) { // Define um tamanho mínimo
+                currentFontSize -= 2; // Diminui o tamanho do texto
+                setFontSize(currentFontSize);
+            }
+        });
+
+        // Inicializa o tamanho da fonte ao carregar a página
+        setFontSize(currentFontSize);
+
+    });
+
+</script>
+
+</body>
+
+</html>

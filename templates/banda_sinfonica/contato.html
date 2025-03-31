@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block 'titulo_head' %} Contato {% endblock %}
+
+{% block 'body_extra' %}
+
+<!-- Menu de navegação superior -->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1874CD;">
+    <a class="navbar-brand" href="#" style="color: white;">Contato</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'sobre' %}" style="color: white;">Sobre</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'evento' %}" style="color: white;">Eventos</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'galeria' %}" style="color: white;">Galeria</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contato' %}" style="color: white;">Contato</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'sair' %}" style="color: white;">Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Conteúdo principal da página -->
+<div class="container mt-5">
+    <h1>Contato</h1>
+    <form id="contactForm">
+        <div class="form-group">
+            <label for="name">Nome:</label>
+            <input type="text" class="form-control" id="name" placeholder="Seu nome" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Seu email" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Mensagem:</label>
+            <textarea class="form-control" id="message" rows="4" placeholder="Escreva sua mensagem" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
+    </form>
+</div>
+
+
+<!-- Rodapé -->
+<footer class="text-center mt-5">
+    <p>&copy; 2024 Banda Sinfônica Henrique Marques. Todos os direitos reservados.</p>
+</footer>
+
+{% endblock %}
