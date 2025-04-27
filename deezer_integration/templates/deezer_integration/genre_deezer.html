@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artistas e Livros por Gênero</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body class="container mt-4">
+    
     <h1 class="text-center mb-4">Faixas Mais Populares e Acervo de Partituras</h1>
+
+    <!-- Botão de Voltar -->
+    <a href="{% url 'home' %}" class="btn btn-primary mb-4" aria-label="Voltar para Acervo de Partituras">Voltar para Acervo de Partituras</a>
 
     <!-- Filtro de Gênero -->
     <form method="POST" class="mb-4">
@@ -30,10 +35,9 @@
             </div>
         </div>
     </form>
-    
 
     <div class="row">
-        <!-- Painel esquerdo: Rank dos Artistas mais populares -->
+        <!-- Rank dos Artistas -->
         <div class="col-md-4 mb-4">
             <div class="card">
                 <div class="card-header bg-primary text-white">
@@ -44,14 +48,10 @@
                         {% for artista in artistas %}
                             <div class="list-group-item">
                                 <span class="badge bg-primary me-2">
-                                    {% if forloop.counter == 1 %}
-                                        🥇
-                                    {% elif forloop.counter == 2 %}
-                                        🥈
-                                    {% elif forloop.counter == 3 %}
-                                        🥉
-                                    {% else %}
-                                        {{ forloop.counter }}º
+                                    {% if forloop.counter == 1 %}🥇
+                                    {% elif forloop.counter == 2 %}🥈
+                                    {% elif forloop.counter == 3 %}🥉
+                                    {% else %}{{ forloop.counter }}º
                                     {% endif %}
                                 </span>
                                 {{ artista.name }}
@@ -62,7 +62,7 @@
             </div>
         </div>
 
-        <!-- Painel direito: Faixas mais populares -->
+        <!-- Gráfico de Faixas Populares -->
         <div class="col-md-8 mb-4">
             <div class="card">
                 <div class="card-header bg-primary text-white">
@@ -70,99 +70,127 @@
                 </div>
                 <div class="card-body">
                     <canvas id="faixasPopularesChart" width="400" height="200"></canvas>
-
-
-
-                    <script>
-                        var ctxFaixas = document.getElementById('faixasPopularesChart').getContext('2d');
-                        
-                        var faixas = [
-                            {% for faixa in faixas %}
-                                { 
-                                    title: "{{ faixa.title }}", 
-                                    artist: "{{ faixa.artist.name }}", 
-                                    popularity: {{ faixa.rank }} 
-                                }
-                                {% if not forloop.last %},{% endif %}
-                            {% endfor %}
-                        ];
-                    
-                        // Ordenar as faixas por popularidade (rank) em ordem decrescente
-                        faixas.sort((a, b) => b.popularity - a.popularity);
-                    
-                        // Combine title and artist name for the chart labels
-                        var faixaLabels = faixas.map(faixa => faixa.title + ' - ' + faixa.artist);
-                        var faixaPopularidade = faixas.map(faixa => faixa.popularity);
-                    
-                        if (faixaLabels.length > 0) {
-                            new Chart(ctxFaixas, {
-                                type: 'bar',
-                                data: {
-                                    labels: faixaLabels,
-                                    datasets: [{
-                                        label: 'Popularidade das Faixas',
-                                        data: faixaPopularidade,
-                                        backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                                        borderColor: 'rgba(255, 159, 64, 1)',
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: { 
-                                    scales: { 
-                                        y: { beginAtZero: true } 
-                                    } 
-                                }
-                            });
-                        }
-                    </script>
-                    
-                    
-
-
-
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Acervo de Partituras -->
-    <div class="card mt-4">
-        <div class="card-header bg-success text-white">
-            <h2 class="h5">Acervo de Partituras</h2>
-        </div>
-        <div class="card-body">
-            {% if livros %}
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Obra</th>
-                                <th>Compositor</th>
-                                <th>Arranjador</th>
-                                <th>Gênero</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for livro in livros %}
-                                <tr>
-                                    <td>{{ livro.obra }}</td>
-                                    <td>{{ livro.compositor }}</td>
-                                    <td>{{ livro.arranjador }}</td>
-                                    <td>{{ livro.genero }}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+    <div class="row mt-4">
+        <!-- Gráfico de Gêneros -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-success text-white">
+                    <h2 class="h5">Distribuição de Partituras por Gênero</h2>
                 </div>
-            {% else %}
-                <p class="text-muted">Nenhuma partitura encontrada.</p>
-            {% endif %}
+                <div class="card-body">
+                    <canvas id="graficoPartiturasGenero" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabela de Livros -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-success text-white">
+                    <h2 class="h5">Acervo de Partituras</h2>
+                </div>
+                <div class="card-body">
+                    {% if livros %}
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Obra</th>
+                                        <th>Compositor</th>
+                                        <th>Arranjador</th>
+                                        <th>Gênero</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for livro in livros %}
+                                        <tr>
+                                            <td>{{ livro.obra }}</td>
+                                            <td>{{ livro.compositor }}</td>
+                                            <td>{{ livro.arranjador }}</td>
+                                            <td>{{ livro.genero }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-muted">Nenhuma partitura encontrada.</p>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Scripts dos Gráficos -->
     <script>
-        console.log("Artistas:", {{ artistas|safe }});
-        console.log("Faixas:", {{ faixas|safe }});
+        // Gráfico de Faixas Mais Populares
+        var ctxFaixas = document.getElementById('faixasPopularesChart').getContext('2d');
+        var faixas = [
+            {% for faixa in faixas %}
+                { title: "{{ faixa.title }}", artist: "{{ faixa.artist.name }}", popularity: {{ faixa.rank }} }
+                {% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ];
+
+        faixas.sort((a, b) => b.popularity - a.popularity);
+
+        var faixaLabels = faixas.map(f => `${f.title} - ${f.artist}`);
+        var faixaPopularidade = faixas.map(f => f.popularity);
+
+        if (faixaLabels.length > 0) {
+            new Chart(ctxFaixas, {
+                type: 'bar',
+                data: {
+                    labels: faixaLabels,
+                    datasets: [{
+                        label: 'Popularidade das Faixas',
+                        data: faixaPopularidade,
+                        backgroundColor: 'rgba(255, 159, 64, 0.5)',
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: { scales: { y: { beginAtZero: true } } }
+            });
+        }
+
+        // Gráfico de Partituras por Gênero
+        var ctxGenero = document.getElementById('graficoPartiturasGenero').getContext('2d');
+        var generosLabels = [
+            {% for item in livros_por_genero %}
+                "{{ item.genero|default:'Não informado' }}"
+                {% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ];
+        var generosCounts = [
+            {% for item in livros_por_genero %}
+                {{ item.count }}
+                {% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ];
+
+        if (generosLabels.length > 0) {
+            new Chart(ctxGenero, {
+                type: 'bar',
+                data: {
+                    labels: generosLabels,
+                    datasets: [{
+                        label: 'Número de Partituras por Gênero',
+                        data: generosCounts,
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: { scales: { y: { beginAtZero: true } } }
+            });
+        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
