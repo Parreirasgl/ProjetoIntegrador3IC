@@ -5,7 +5,6 @@ from usuarios import views
 
 urlpatterns = [
     path('', lambda request: redirect('sobre/')),
-    # path('', lambda request: redirect('auth/login/')),
     path('admin/', admin.site.urls),
     path('livro/', include('livro.urls')),
     path('auth/', include('usuarios.urls')),

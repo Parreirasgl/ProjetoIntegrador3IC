@@ -12,7 +12,7 @@ from .models import Categoria, Emprestimos, Livros
 class CadastroLivro(forms.ModelForm):
     class Meta:
         model = Livros
-        fields = ['categoria','compositor', 'arranjador', 'obra', 'classificacao', 'conteudo', 'edicao', 'edicao', 'observacao', 'data_cadastro', 'emprestado', 'localizacao', 'categoria', 'formato', 'usuario', 'observacoes_gerais']
+        fields = ['categoria','compositor', 'arranjador', 'obra', 'classificacao', 'conteudo', 'edicao', 'edicao', 'observacao', 'data_cadastro', 'emprestado', 'localizacao', 'categoria', 'formato', 'usuario', 'observacoes_gerais', 'genero']
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

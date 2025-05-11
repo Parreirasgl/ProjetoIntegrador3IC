@@ -205,6 +205,7 @@ def alterar_livro(request):
     formato = request.POST.get('formato')
     observacao = request.POST.get('observacao')
     observacoes_gerais = request.POST.get('observacoes_gerais')
+    genero = request.POST.get('genero')
 
     categoria_id = request.POST.get('categoria_id')
 
@@ -222,6 +223,7 @@ def alterar_livro(request):
         livro.formato = formato
         livro.observacao = observacao
         livro.observacoes_gerais = observacoes_gerais
+        livro.genero = genero
 
         livro.categoria = categoria
         livro.save()
@@ -249,8 +251,8 @@ def processa_avaliacao(request):
 
 class LivroList(APIView):
     def get(self, request):
-        livros = Livros.objects.all()  # Obter todos os livros
-        serializer = LivroSerializer(livros, many=True)  # Serializar os livros
+        livros = Livros.objects.all()  # Obter todos os partituras
+        serializer = LivroSerializer(livros, many=True)  # Serializar os partitura
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 

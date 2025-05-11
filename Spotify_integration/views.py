@@ -2,7 +2,7 @@
 import requests
 from django.shortcuts import render
 
-SPOTIFY_TOKEN = "5833e60484164180a19c842777ce74f7"  # Adicione um método seguro para armazenar tokens
+SPOTIFY_TOKEN = "" 
 SPOTIFY_POPULAR_TRACKS_URL = "https://api.spotify.com/v1/playlists/{}/tracks"
 
 def obter_faixas_spotify(playlist_id):

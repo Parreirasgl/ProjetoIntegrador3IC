@@ -10,162 +10,133 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" >Deseja mesmo excluir ?</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Deseja mesmo excluir?</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        
-
         <a href="{% url 'excluir_livro' id_livro %}" class="btn btn-danger">Excluir</a>
-         
       </div>
-      
     </div>
   </div>
 </div>
 
-
+<div class="container">
   <div class="container">
-      <br>
-      <!-- <style>
-        /* Define a cor do texto da label */
-        label {
-            color: rgb(46, 46, 46);
-        }
-    </style> -->
-    <form action="{% url 'alterar_livro' %}" method="POST">
-        {% csrf_token %}
-        <input type="hidden" value="{{livro.id}}" name="livro_id">
+    <div class="d-flex justify-content-end mt-3">
+      <a href="{% url 'home' %}" class="btn btn-primary mb-3">Voltar ao Acervo</a>
+    </div>
+  
+  <br>
+  <form action="{% url 'alterar_livro' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" value="{{livro.id}}" name="livro_id">
 
-        <p>
-          <label>Compositor:</label>
-          <input class="form-control" type="texte" value="{{livro.compositor}}" aria-label="compositor">
-        </p>
+    <div class="form-group">
+      <label for="compositor">Compositor:</label>
+      <input id="compositor" class="form-control" type="text" value="{{livro.compositor}}" name="compositor" aria-label="Compositor">
+    </div>
 
-        <p>
-          <label>Arranjador:</label>
-          <input class="form-control" type="texte" value="{{livro.arranjador}}" aria-label="arranjador">
-        </p>
+    <div class="form-group">
+      <label for="arranjador">Arranjador:</label>
+      <input id="arranjador" class="form-control" type="text" value="{{livro.arranjador}}" name="arranjador" aria-label="Arranjador">
+    </div>
 
-        <p>
-          <label>Nome da Obra:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.obra}}" name="obra" aria-label="nome da obra">
-        </p>
+    <div class="form-group">
+      <label for="obra">Nome da Obra:</label>
+      <input id="obra" class="form-control" type="text" value="{{livro.obra}}" name="obra" aria-label="Nome da obra">
+    </div>
 
-        <p>
-          <label>Classificação:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.classificacao}}" name="classificacao" aria-label="classificação">
-        </p>
+    <div class="form-group">
+      <label for="classificacao">Classificação:</label>
+      <input id="classificacao" class="form-control" type="text" value="{{livro.classificacao}}" name="classificacao" aria-label="Classificação">
+    </div>
 
-        <p>
-          <label>Conteúdo:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.conteudo}}" name="conteudo" aria-label="conteúdo">
-        </p>
+    <div class="form-group">
+      <label for="conteudo">Conteúdo:</label>
+      <input id="conteudo" class="form-control" type="text" value="{{livro.conteudo}}" name="conteudo" aria-label="Conteúdo">
+    </div>
 
-        <p>
-          <label>Edição:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.edicao}}" name="edicao" aria-label="edição">
-        </p>
+    <div class="form-group">
+      <label for="edicao">Edição:</label>
+      <input id="edicao" class="form-control" type="text" value="{{livro.edicao}}" name="edicao" aria-label="Edição">
+    </div>
 
-        <p>
-          <label>Localização:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.localizacao}}" name="localizacao" aria-label="localização">
-        </p>
-       <!--
-        <p>
-          <label>Exemplares disponíveis:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.exemplares_disponiveis}}" name="exemplares_disponiveis">
-        </p>
-      -->
+    <div class="form-group">
+      <label for="localizacao">Localização:</label>
+      <input id="localizacao" class="form-control" type="text" value="{{livro.localizacao}}" name="localizacao" aria-label="Localização">
+    </div>
 
-        <p>
-          <label>Formato:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.formato}}" name="formato" aria-label="formato">
-        </p>
+    <div class="form-group">
+      <label for="formato">Formato:</label>
+      <input id="formato" class="form-control" type="text" value="{{livro.formato}}" name="formato" aria-label="Formato">
+    </div>
 
+    <div class="form-group">
+      <label for="observacao">Observações:</label>
+      <input id="observacao" class="form-control" type="text" value="{{livro.observacao}}" name="observacao" aria-label="Observações">
+    </div>
 
-        <p>
-          <label>Observações:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.observacao}}" name="observacao" aria-label="observação">
-        </p>
+    <div class="form-group">
+      <label for="observacoes_gerais">Observações Gerais:</label>
+      <input id="observacoes_gerais" class="form-control" type="text" value="{{livro.observacoes_gerais}}" name="observacoes_gerais" aria-label="Observações gerais">
+    </div>
 
-        <p>
-          <label>Observações Gerais:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.observacoes_gerais}}" name="observacoes_gerais" aria-label="observações gerais">
-        </p>
+    <div class="form-group">
+      <label for="genero">Gênero:</label>
+      <input id="genero" class="form-control" type="text" value="{{livro.genero}}" name="genero" aria-label="Gênero">
+    </div>
 
-        <label>Categoria:</label>
-        <select style="width: 20%;" class="form-control" name="categoria_id" aria-label="categoria">
-          
-          {% for i in categoria_livro%}
-          
-            {% if livro.categoria.nome == i.nome %}
-              <option value="{{i.id}}" selected>{{i}}</option>
-            {% else %}
+    <div class="form-group">
+      <label for="categoria_id">Categoria:</label>
+      <select id="categoria_id" class="form-control" name="categoria_id" aria-label="Categoria">
+        {% for i in categoria_livro %}
+          <option value="{{i.id}}" {% if livro.categoria.nome == i.nome %}selected{% endif %}>{{i}}</option>
+        {% endfor %}
+      </select>
+    </div>
 
-              <option value="{{i.id}}">{{i}}</option>
-            {% endif%}
-          {% endfor %}
-          
+    <div class="form-group">
+      <label>Data de Cadastro:</label>
+      <p>{{livro.data_cadastro}}</p>
+    </div>
 
-          
-        </select>
+    <div class="form-group">
+      <label>Emprestado:</label>
+      {% if livro.emprestado %}
+        <svg style="color: green" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+          <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+        </svg>
+      {% else %}
+        <svg style="color: red" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+      {% endif %}
+    </div>
 
-        
-        <br>
+    <button type="submit" class="btn btn-success btn-lg">Salvar</button>
+  </form>
 
-        <p>
-          <label >Data:</label>
-          <p>{{livro.data_cadastro}}</p>
-        </p>
-      
-        <br>
-       
-        
-          <label>Emprestado</label>
-          {% if livro.emprestado %}
+  <br>
+  <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal2">
+    Excluir
+  </button>
 
-            <svg style="color: green" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-              <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-            </svg>
-        
-          {% else %}
-            <svg style="color: red" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-            </svg>
-        
-          {% endif %}
-          <br>
-          <br>
-
-        
-    
-        
-
-        <input type="submit" class="btn btn-success btn-lg" value="Salvar">
-    </form>
-    <br>
-    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal2">
-      Excluir
-    </button>
-    
-    <hr>
-    <h2>Histórico de Retiradas</h2>
-    
-    <table class="table table-striped" role="grid" aria-label="Histórico de Retiradas">
-      <thead>
-        <tr class="livro">
-          <th scope="col">Nome</th>
-          <th scope="col">Data Retirada</th>
-          <th scope="col">Data Devolução</th>
-          <th scope="col">Tempo de Duração</th>
-          <!-- <th scope="col" style="color: white;">Avaliação do estado do material</th> -->
-        </tr>
-      </thead>
-      <tbody>
-        {% for i in emprestimos %}
+  <hr>
+  <h2>Histórico de Retiradas</h2>
+  
+  <table class="table table-striped" role="grid" aria-label="Histórico de Retiradas">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Data Retirada</th>
+        <th scope="col">Data Devolução</th>
+        <th scope="col">Tempo de Duração</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in emprestimos %}
           <tr class="livro">
             {% if i.nome_emprestado_anonimo == None %}
               <th scope="row" tabindex="0">
@@ -178,62 +149,12 @@
             <td tabindex="0">{{ i.data_devolucao }}</td>
             <td tabindex="0">{{ i.data_devolucao|mostra_duracao:i.data_emprestimo }}</td>
             <td>
-              <!-- {% if i.avaliacao == None %}
-                <button onclick="avaliacao({{i.id}})" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">AVALIAR</button>
-              {% else%}
-                {{i.avaliacao}}
-              {% endif %}-->
+
               </td>
             </tr>
           {% endfor %}
-        </tbody>
-      </table>
-    
-    
-  
-  </div>
-
-
-<!--
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Avaliar empréstimo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="{% url 'processa_avaliacao' %}" method="POST">{% csrf_token %}
-          <input type="hidden" name="id_livro" value="{{id_livro}}">
-          <input id="id_emprestimo" type="hidden" name="id_emprestimo">
-          <select class="form-control" name="opcoes">
-            <option value="P">Péssimo</option>
-            <option value="R">Ruim</option>
-            <option value="B">Bom</option>
-            <option value="O">Ótimo</option>
-          <select>
-          <br>
-          <input type="submit" class="btn btn-info" value="Avaliar">
-        </form>
-      </div>
-     
-    </div>
-  </div>
+    </tbody>
+  </table>
 </div>
-
-
-<script>
-
-  function avaliacao(id_emprestimo){
-      input_emprestimo = document.getElementById('id_emprestimo')
-      input_emprestimo.value = id_emprestimo
-
-
-  }
-
-</script>
--->
 
 {% endblock %}
