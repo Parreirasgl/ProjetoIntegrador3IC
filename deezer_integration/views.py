@@ -20,9 +20,9 @@ def artistas_por_genero(request):
     # Inicializa listas vazias
     faixas = []  # Faixas mais populares
     artistas = []  # Artistas mais populares
-    livros = Livros.objects.all()
+    livros = Livros.objects.all() # Partituras
 
-    # Contagem de livros por gênero
+    # Contagem de Partituras por gênero
     livros_por_genero = Livros.objects.values('genero').annotate(count=Count('id')).order_by('genero')
 
     # Verifica se o formulário foi enviado
@@ -32,7 +32,7 @@ def artistas_por_genero(request):
         genre_id = request.POST['genero']  # ID do gênero selecionado
 
     if genre_id == 'todos':
-        livros = Livros.objects.all()  # Todos os livros
+        livros = Livros.objects.all()  # Todas as Partituras
         # Requisição para buscar faixas populares de todos os gêneros
         DEEZER_POPULAR_TRACKS_URL = "https://api.deezer.com/chart/0/tracks"  # Pega as faixas populares de todos os gêneros
         response_faixas = requests.get(DEEZER_POPULAR_TRACKS_URL)

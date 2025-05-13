@@ -99,33 +99,6 @@
     <p style="text-align: center;">&copy; 2024 Banda Sinfônica Henrique Marques. Todos os direitos reservados.</p>
 </footer>
 
-<!-- Google Maps -->
-<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&callback=initMap" async defer></script>
-
-<script>
-  function initMap() {
-    var geocoder = new google.maps.Geocoder();
-    var endereco = 'Praça Toledo de Barros, s/n - Centro, Limeira - SP, Brasil';
-
-    geocoder.geocode({ 'address': endereco }, function(results, status) {
-      if (status == 'OK') {
-        var mapOptions = {
-          zoom: 14,
-          center: results[0].geometry.location
-        };
-        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        
-        var marker = new google.maps.Marker({
-          position: results[0].geometry.location,
-          map: map,
-          title: 'Praça Toledo de Barros'
-        });
-      } else {
-        alert('Não foi possível localizar o endereço: ' + status);
-      }
-    });
-  }
-</script>
 <br>
 <br>
 <br>

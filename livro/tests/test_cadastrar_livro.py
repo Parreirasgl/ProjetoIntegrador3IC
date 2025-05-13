@@ -15,7 +15,7 @@ class CadastrarLivroTest(TestCase):
         # URL para redirecionamento após o cadastro
         self.url = reverse('cadastrar_livro')
 
-        # Dados válidos para o formulário de livro
+        # Dados válidos para o formulário de partitura
         self.dados_validos = {
             'categoria': 'Categoria Exemplo',
             'compositor': 'Compositor Exemplo',
